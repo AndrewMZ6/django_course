@@ -137,7 +137,7 @@ def real_index(request):
 				  onclick="w3_close()">Close &times;</button>
 				  <a href="http://localhost:8000/polls/" class="w3-bar-item w3-button">Polls</a>
 				  <a href="http://localhost:8000/polls/dsp/" class="w3-bar-item w3-button">DSP</a>
-				  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+				  <a href="http://localhost:8000/admin/" class="w3-bar-item w3-button">Admin</a>
 				</div>
 
 				<div>
