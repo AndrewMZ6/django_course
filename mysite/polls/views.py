@@ -1,34 +1,18 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from django.template import loader
+from django.shortcuts import render, get_object_or_404
+
+from polls.models import Question
 
 
 def index(request):
-	return HttpResponse("""
-			<!DOCTYPE html>
-				<html lang="en">
-				<head>
-				  <title>Bootstrap Example</title>
-				  <meta charset="utf-8">
-				  <meta name="viewport" content="width=device-width, initial-scale=1">
-				  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-				  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-				</head>
-				<body>
-
-				<div class="container mt-3">
-				  <h2>Button Outline</h2>
-				  <a href="http://localhost:8000/polls/dsp"><button type="button" class="btn btn-outline-primary" >DSP</button></a>
-				  <a href="http://localhost:8000/"><button type="button" class="btn btn-outline-secondary">Main</button></a>
-				  <button type="button" class="btn btn-outline-success">Override</button>
-				  <button type="button" class="btn btn-outline-info">Skill Tree</button>
-				  <button type="button" class="btn btn-outline-warning">Road Map</button>
-				  <button type="button" class="btn btn-outline-danger">Presence</button>
-				  <button type="button" class="btn btn-outline-dark">About</button>
-				  <a href="https://github.com/AndrewMZ6/django_polls"><button type="button" class="btn btn-outline-light text-dark">Git</button></a>
-				</div>
-
-				</body>
-				</html>
-			""")
+	latest_question_list = Question.objects.order_by('-pub_date')[:5]
+	context = {
+				'latest_question_list':latest_question_list,
+				'request':request, 
+				'request_dir':dir(request)
+	}
+	return render(request, 'polls/index.html', context)
 
 def dsp(request):
 	return HttpResponse("""
@@ -163,3 +147,22 @@ def real_index(request):
 				</html> 
 
 		""")
+
+def detail(request, question_id):
+	question = get_object_or_404(Question, pk=question_id)
+	
+	context = {
+				'question_id':question_id
+	}
+	
+	return render(request, 'polls/details.html', context)
+
+def results(request, question_id):
+	context = {
+				'question_id':question_id
+	}
+	
+	return render(request, 'polls/results.html', context)
+
+def vote(request, question_id):
+	return HttpResponse("You're voting on question %s" % question_id)
