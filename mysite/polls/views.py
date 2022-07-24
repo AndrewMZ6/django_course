@@ -16,14 +16,14 @@ def index(request):
 
 				<div class="container mt-3">
 				  <h2>Button Outline</h2>
-				  <a href="http://localhost:8000/polls/dsp"><button type="button" class="btn btn-outline-primary" >Андрей</button></a>
-				  <button type="button" class="btn btn-outline-secondary">Наиташа</button>
-				  <button type="button" class="btn btn-outline-success">Ира</button>
-				  <button type="button" class="btn btn-outline-info">Мария</button>
-				  <button type="button" class="btn btn-outline-warning">Виктория</button>
-				  <button type="button" class="btn btn-outline-danger">Вероника</button>
-				  <button type="button" class="btn btn-outline-dark">Олег</button>
-				  <button type="button" class="btn btn-outline-light text-dark">Мама</button>
+				  <a href="http://localhost:8000/polls/dsp"><button type="button" class="btn btn-outline-primary" >DSP</button></a>
+				  <a href="http://localhost:8000/"><button type="button" class="btn btn-outline-secondary">Main</button></a>
+				  <button type="button" class="btn btn-outline-success">Override</button>
+				  <button type="button" class="btn btn-outline-info">Skill Tree</button>
+				  <button type="button" class="btn btn-outline-warning">Road Map</button>
+				  <button type="button" class="btn btn-outline-danger">Presence</button>
+				  <button type="button" class="btn btn-outline-dark">About</button>
+				  <a href="https://github.com/AndrewMZ6/django_polls"><button type="button" class="btn btn-outline-light text-dark">Git</button></a>
 				</div>
 
 				</body>
@@ -61,10 +61,10 @@ def dsp(request):
 			        <a class="nav-link active" href="#">Active</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="http://localhost:8000/polls/">Link</a>
+			        <a class="nav-link" href="http://localhost:8000/polls/">Polls</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Link</a>
+			        <a class="nav-link" href="http://localhost:8000/">Main</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link disabled" href="#">Disabled</a>
@@ -120,5 +120,46 @@ def dsp(request):
 
 			</body>
 			</html>
+
+		""")
+
+def real_index(request):
+	return HttpResponse("""
+			<!DOCTYPE html>
+				<html>
+				<title>W3.CSS</title>
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+				<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+				<body>
+
+				<div class="w3-sidebar w3-bar-block w3-dark-grey w3-animate-left" style="display:none" id="mySidebar">
+				  <button class="w3-bar-item w3-button w3-large"
+				  onclick="w3_close()">Close &times;</button>
+				  <a href="http://localhost:8000/polls/" class="w3-bar-item w3-button">Polls</a>
+				  <a href="http://localhost:8000/polls/dsp/" class="w3-bar-item w3-button">DSP</a>
+				  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+				</div>
+
+				<div>
+				  <button class="w3-button w3-white w3-xxlarge" onclick="w3_open()">&#9776;</button>
+				  <div class="w3-container">
+				    <h1>Animated Sidebar</h1>
+				    <p>Click on the "hamburger menu" to slide in the side navigation.</p>
+				    <p>W3.CSS provide the following animation classes if you want to experiment for yourself:</p>
+				    <p>w3-animate-left, w3-animate-top, w3-animate-bottom, w3-animate-right, w3-animate-opacity, w3-animate-zoom</p>
+				  </div>
+				</div>
+
+				<script>
+				function w3_open() {
+				    document.getElementById("mySidebar").style.display = "block";
+				}
+				function w3_close() {
+				    document.getElementById("mySidebar").style.display = "none";
+				}
+				</script>
+				     
+				</body>
+				</html> 
 
 		""")
